@@ -30,14 +30,27 @@ variable "profile" {
 
 variable "main_vpc_cidr" {
   description = "Main VPC CIDR"
+  default = "10.0.0.0/16"
 }
 
-variable "public_subnets" {
+variable "public_subnets_cidr" {
   description = "Public subnet CIDR"
+  type        = list(string)
+  default     = [
+    "10.0.0.0/24",
+    "10.0.1.0/24"
+//    "10.0.2.0/24"
+  ]
 }
 
-variable "private_subnets" {
+variable "private_subnets_cidr" {
   description = "Private subnet CIDR"
+  type        = list(string)
+  default     = [
+    "10.0.10.0/24",
+    "10.0.11.0/24"
+//    "10.0.12.0/24"
+  ]
 }
 
 # -----------------------------------------------------------------------------

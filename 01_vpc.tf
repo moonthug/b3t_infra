@@ -8,4 +8,5 @@ resource "aws_vpc" "main" {
 # Create Internet Gateway and attach it to VPC
 resource "aws_internet_gateway" "gateway" {
   vpc_id =  aws_vpc.main.id
+  tags   = merge(local.tags, {"Name"="${var.namespace}-${var.environment}-igw"})
 }
