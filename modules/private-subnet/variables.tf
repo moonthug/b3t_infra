@@ -26,10 +26,10 @@ variable "cidr_block" {
   type        = string
 }
 
-//variable "availability_zone" {
-//  description = "Availability zone for the subnet to inhabit"
-//  type        = string
-//}
+variable "availability_zone" {
+  description = "Availability zone for the subnet to inhabit"
+  type        = string
+}
 
 //variable "name" {
 //  description = "Name for the subnet resources to build upon"

@@ -14,6 +14,7 @@ variable "environment" {
 
 variable "namespace" {
   description = "AWS resource namespace/prefix"
+  default = "b3t"
 }
 
 variable "region" {
@@ -52,6 +53,43 @@ variable "private_subnets_cidr" {
 //    "10.0.12.0/24"
   ]
 }
+
+variable "availability_zone_suffixes" {
+  description = "List of availability zone suffixes (e.g. a, b c => eu-west-1a)"
+  type        = list(string)
+  default     = [
+    "a",
+    "b",
+    "c",
+  ]
+}
+
+
+# -----------------------------------------------------------------------------
+# Variables: Reverse PRoxy
+# -----------------------------------------------------------------------------
+
+
+variable "reverse_proxy_ami" {
+  description = "AWS Image to use for Reverse Proxy instance"
+  default = "ami-0ac43988dfd31ab9a"
+}
+
+variable "reverse_proxy_ssh_user" {
+  description = "SSH User"
+  default = "ec2-user"
+}
+
+variable "reverse_proxy_keypair_public_path" {
+  description = "Public key path"
+  default = "keys/b3t_reverse_proxy.pub"
+}
+
+variable "reverse_proxy_keypair_private_path" {
+  description = "Private key path"
+  default = "keys/b3t_reverse_proxy"
+}
+
 
 # -----------------------------------------------------------------------------
 # Variables: Locals
