@@ -7,10 +7,10 @@ variable "environment" {
   default = "dev"
 }
 
+
 # -----------------------------------------------------------------------------
 # Variables: AWS
 # -----------------------------------------------------------------------------
-
 
 variable "namespace" {
   description = "AWS resource namespace/prefix"
@@ -24,6 +24,7 @@ variable "region" {
 variable "profile" {
   description = "AWS Profile to use"
 }
+
 
 # -----------------------------------------------------------------------------
 # Variables: VPC
@@ -64,11 +65,21 @@ variable "availability_zone_suffixes" {
   ]
 }
 
+# -----------------------------------------------------------------------------
+# Variables: DB
+# -----------------------------------------------------------------------------
+
+variable "doc_db_master_username" {
+  description = "DocumentDB Cluster master username"
+}
+
+variable "doc_db_master_password" {
+  description = "DocumentDB Cluster master username"
+}
 
 # -----------------------------------------------------------------------------
-# Variables: Reverse PRoxy
+# Variables: Reverse Proxy
 # -----------------------------------------------------------------------------
-
 
 variable "reverse_proxy_ami" {
   description = "AWS Image to use for Reverse Proxy instance"
@@ -98,5 +109,6 @@ variable "reverse_proxy_keypair_private_path" {
 locals {
   tags = {
     "namespace": var.namespace
+    "environment": var.environment
   }
 }

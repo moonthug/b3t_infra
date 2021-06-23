@@ -1,3 +1,4 @@
+# Create bucket for frontend
 resource "aws_s3_bucket" "web" {
   bucket  = "b3t-web"
   acl     = "public-read"
