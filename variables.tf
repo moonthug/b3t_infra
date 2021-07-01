@@ -2,20 +2,22 @@
 # Variables: General
 # -----------------------------------------------------------------------------
 
-variable "environment" {
-  description = "Environment to use"
-  default = "dev"
+variable "namespace" {
+  description = "Namespace and AWS prefix"
+  default = "b3t"
 }
 
+variable "environment" {
+  description = "Environment to use"
+}
+
+variable "domain" {
+  description = "Main domain"
+}
 
 # -----------------------------------------------------------------------------
 # Variables: AWS
 # -----------------------------------------------------------------------------
-
-variable "namespace" {
-  description = "AWS resource namespace/prefix"
-  default = "b3t"
-}
 
 variable "region" {
   description = "AWS Region"
@@ -57,6 +59,20 @@ variable "private_subnets_cidr" {
 
 variable "availability_zone_suffixes" {
   description = "List of availability zone suffixes (e.g. a, b c => eu-west-1a)"
+  type        = list(string)
+  default     = [
+    "a",
+    "b",
+    "c",
+  ]
+}
+
+# -----------------------------------------------------------------------------
+# Variables: Cognito
+# -----------------------------------------------------------------------------
+
+variable "cognito_create_users" {
+  description = "List of cognito users to create"
   type        = list(string)
   default     = [
     "a",
