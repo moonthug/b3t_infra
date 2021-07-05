@@ -113,7 +113,7 @@ resource "aws_cognito_identity_pool_roles_attachment" "main" {
 }
 
 # Create admin user
-resource "null_resource" "cognito_user" {
+resource "null_resource" "cognito_user_create" {
   triggers = {
     user_pool_id = aws_cognito_user_pool.main.id
   }
@@ -124,6 +124,24 @@ resource "null_resource" "cognito_user" {
       --user-pool-id ${aws_cognito_user_pool.main.id} \
       --username admin \
       --user-attributes '[{"Name": "email", "Value": "alex@polyglot.rodeo"}]' \
+      --profile=${var.profile} \
+      --region=${var.region}
+    EOT
+  }
+}
+
+resource "null_resource" "cognito_user_update_password" {
+  triggers = {
+    user_pool_id = aws_cognito_user_pool.main.id
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+    aws cognito-idp admin-set-user-password \
+      --user-pool-id ${aws_cognito_user_pool.main.id} \
+      --username admin \
+      --password ${var.admin_password} \
+      --permanent \
       --profile=${var.profile} \
       --region=${var.region}
     EOT

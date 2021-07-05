@@ -117,6 +117,14 @@ variable "reverse_proxy_keypair_private_path" {
   default = "keys/b3t_reverse_proxy"
 }
 
+# -----------------------------------------------------------------------------
+# Variables: Cognito
+# -----------------------------------------------------------------------------
+
+variable "admin_password" {
+  description = "Cognito Admin password"
+}
+
 
 # -----------------------------------------------------------------------------
 # Variables: Locals

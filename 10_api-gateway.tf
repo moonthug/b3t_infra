@@ -46,9 +46,3 @@ data "aws_iam_policy_document" "deny_everything" {
     resources = ["*"]
   }
 }
-
-# Matched Odds API Gateway
-resource "aws_api_gateway_rest_api" "matched_odds" {
-  name        = "${var.namespace}-${var.environment}-matched-odds"
-  description = "Matched Odds API"
-}

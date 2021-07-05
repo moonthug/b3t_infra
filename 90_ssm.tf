@@ -1,3 +1,9 @@
+resource "aws_ssm_parameter" "domain" {
+  name        = "/${var.namespace}/${var.environment}/domain"
+  type        = "String"
+  value       = var.domain
+}
+
 resource "aws_ssm_parameter" "vpc_arn" {
   name        = "/${var.namespace}/${var.environment}/vpc_arn"
   type        = "String"
@@ -52,8 +58,8 @@ resource "aws_ssm_parameter" "cognito_identity_pool_id" {
   value       = aws_cognito_identity_pool.main.id
 }
 
-resource "aws_ssm_parameter" "aws_api_gateway_matched_odds_id" {
-  name        = "/${var.namespace}/${var.environment}/matched_odds_api_id"
+resource "aws_ssm_parameter" "cognito_frontend_client_id" {
+  name        = "/${var.namespace}/${var.environment}/cognito_frontend_client_id"
   type        = "String"
-  value       = aws_api_gateway_rest_api.matched_odds.id
+  value       = aws_cognito_user_pool_client.frontend.id
 }
